@@ -1,18 +1,32 @@
 ﻿@using CheckMarxSolution.Models
 @model ItemModel
 
-<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script>
+     $(document).ready(function () {
+         $("#search_issue").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Home/GetSearch",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item, value: item };
+                        }))
 
-<script type="text/javascript">
-    $(function () {
-        $('#search_issue').autocomplete({
-            source: '@Url.Action("GetSearch")'
-        })
-    });
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
 </script>
-
 @{
     ViewBag.Title = "Home Page";
 }
@@ -24,7 +38,7 @@
         {
             <label style="width:33%;">Search Issue</label>
             <input type="text" id="search_issue" name="search_issue" style="width:33%;height:50px;" />
-            <input type="submit" value="Search" style="margin-left:20px;" />
+            <input type="submit" value="Search" style="margin-left:20px;background-color:cornflowerblue;color:white;" />
         }
     </div>
     @if (Model != null)

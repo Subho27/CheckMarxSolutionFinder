@@ -1,17 +1,33 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="jumbotron">
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <div style="width:80%;margin:0 auto;">
+        @using (Html.BeginForm("", "", FormMethod.Post))
+        {
+            <div id="issuename-div">
+                <label style="width:33%;">Issue Name</label>
+                <input type="text" id="issuename" name="issuename" style="width:50%;" />
+            </div>
+            <div id="description-div">
+                <label style="width:33%;">Description</label>
+                <textarea id="description" name="description" style="width:50%;" rows="3" ></textarea>
+            </div>
+            <div id="solution-div">
+                <label style="width:33%;">Solution</label>
+                <textarea id="solution" name="solution" style="width:50%;" rows="3" ></textarea>
+            </div>
+            <div id="comments-div">
+                <label style="width:33%;">Comments</label>
+                <textarea id="comments" name="comments" style="width:50%;" rows="3" ></textarea>
+            </div>
+            <div id="submit-div">
+                <label style="width:33%;"></label>
+                <input type="submit" value="Submit" style="background-color: cornflowerblue; color: white;" />
+            </div>
+
+        }
+    </div>
+</div>
