@@ -12,6 +12,7 @@ namespace CheckMarxSolution.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Name = "index";
             return View();
         }
 
@@ -22,7 +23,7 @@ namespace CheckMarxSolution.Controllers
 
             ItemModel searchResult = new ItemModel();
             List<ItemModel> items = new List<ItemModel>();
-            var filename = "C:/Users/Subhodip/Desktop/CheckMarxSolutionFinder/CheckMarxSolution/demo.xlsx";
+            var filename = "C:/Users/891147/source/repos/CheckMarxSolution/demo.xlsx";
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             using (var stream = System.IO.File.Open(filename, System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
@@ -47,15 +48,16 @@ namespace CheckMarxSolution.Controllers
                     searchResult = item;
                 }
             }
-
+            ViewBag.Name = "index";
             return View(searchResult);
         }
 
         public JsonResult GetSearch(string Prefix)
         {
-            Prefix = Prefix.ToUpper();
+            Prefix = Prefix.ToLower();
             List<string> items = new List<string>();
-            var filename = "C:/Users/Subhodip/Desktop/CheckMarxSolutionFinder/CheckMarxSolution/demo.xlsx";
+            List<string> result = new List<string>();
+            var filename = "C:/Users/891147/source/repos/CheckMarxSolution/demo.xlsx";
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             using (var stream = System.IO.File.Open(filename, System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
@@ -67,18 +69,26 @@ namespace CheckMarxSolution.Controllers
                     }
                 }
             }
-            items = items.Where(x => x.StartsWith(Prefix)).Select(y => y).ToList();
-            return Json(items, JsonRequestBehavior.AllowGet);
+            foreach(var i in items)
+            {
+                if (i.ToLower().StartsWith(Prefix))
+                {
+                    result.Add(i);
+                }
+            }
+            //items = items.Where(x => x.StartsWith(Prefix)).Select(y => y).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-
+            ViewBag.Name = "login";
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult CreateItem()
         {
+            ViewBag.Name = "CreateItem";
             return View();
         }
     }

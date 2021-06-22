@@ -6,6 +6,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        footer {
+            position: absolute;
+            bottom: 0;
+            height: 50px;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,7 +27,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <div style="float:right;">
-                    <p style="color:white;">Found a solution? @Html.ActionLink("Login", "About", "Home")</p>
+                    @if (!(ViewBag.Name == "CreateItem")){
+                    <p style="color:white;">Found any Solution? @Html.ActionLink("Login Here", "Login", "Home")</p>
+                    }
                 </div>
                 @*<ul class="nav navbar-nav" >
                     <li>@Html.ActionLink("Login", "Index", "Home")</li>

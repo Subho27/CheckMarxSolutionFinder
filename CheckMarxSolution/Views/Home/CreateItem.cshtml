@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "CreateItem";
+}
+<style>
+    .center {
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translatex(-50%) translatey(-50%);
+        -webkit-transform: translatex(-50%) translatey(-50%);
+        transform: translatex(-50%) translatey(-50%);
+    }
+    label {
+        width: 200px;
+    }
+    textarea {
+        width: 500px;
+    }
+    table{
+        margin:auto;
+    }
+</style>
+<div class="center">
+    <div class="jumbotron">
+
+        <div style="width:80%;margin:0 auto;">
+            @using (Html.BeginForm("", "", FormMethod.Post))
+            {
+                <table>
+                    <tr>
+                        <td><label>Issue Name</label></td>
+                        <td><textarea id="issuename" name="issuename" rows="3"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label>Description</label></td>
+                        <td><textarea id="description" name="description" rows="3"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label>Solution</label></td>
+                        <td><textarea id="solution" name="solution" rows="3"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label style="width:33%;">Comments</label></td>
+                        <td><textarea id="comments" name="comments" rows="3"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Submit" style="background-color: cornflowerblue; color: white;" /></td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>

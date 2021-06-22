@@ -7,7 +7,7 @@
 <script>
      $(document).ready(function () {
          $("#search_issue").autocomplete({
-            source: function (request, response) {
+             source: function (request, response) {
                 $.ajax({
                     url: "/Home/GetSearch",
                     type: "POST",
@@ -23,38 +23,60 @@
             },
             messages: {
                 noResults: "", results: ""
-            }
+             }
         });
     })
 </script>
+<style>
+    .center {
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translatex(-50%) translatey(-50%);
+        -webkit-transform: translatex(-50%) translatey(-50%);
+        transform: translatex(-50%) translatey(-50%);
+    }
+    td:nth-child(1) {
+        width: 100px;
+    }
+    td:nth-child(2) {
+        width: 300px;
+    }
+    td:nth-child(3) {
+        width: 300px;
+    }
+</style>
 @{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="center">
+    <div class="jumbotron">
 
-    <div style="width:80%;margin:0 auto;">
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        <div style="width:80%;margin:0 auto;">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <label style="width:25%;">Search Issue</label>
+                <input type="text" id="search_issue" name="search_issue" style="width:45%;height:50px;" />
+                <input type="submit" value="Search" style="margin-left:20px;background-color:cornflowerblue;color:white;" />
+            }
+        </div>
+        @if (Model != null)
         {
-            <label style="width:33%;">Search Issue</label>
-            <input type="text" id="search_issue" name="search_issue" style="width:33%;height:50px;" />
-            <input type="submit" value="Search" style="margin-left:20px;background-color:cornflowerblue;color:white;" />
+            <hr />
+            <table cellpadding="0" cellspacing="0" border="1" width="100%" style="text-align:center;">
+                <tr>
+                    <td>Search Issue</td>
+                    <td>Description</td>
+                    <td>Solution</td>
+                </tr>
+                <tr>
+                    <td>@Model.SearchIssue</td>
+                    <td>@Model.Description</td>
+                    <td>@Model.Solution</td>
+                </tr>
+            </table>
         }
     </div>
-    @if (Model != null)
-    {
-        <hr />
-        <table cellpadding="0" cellspacing="0" border="1" width="100%" style="text-align:center;">
-            <tr>
-                <td>Search Issue</td>
-                <td>Description</td>
-                <td>Solution</td>
-            </tr>
-            <tr>
-                <td>@Model.SearchIssue</td>
-                <td>@Model.Description</td>
-                <td>@Model.Solution</td>
-            </tr>
-        </table>
-    }
 </div>

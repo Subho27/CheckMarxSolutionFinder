@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+<style>
+    .center {
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translatex(-50%) translatey(-50%);
+        -webkit-transform: translatex(-50%) translatey(-50%);
+        transform: translatex(-50%) translatey(-50%);
+    }
+</style>
+<div class="center">
+    <div class="jumbotron">
+
+        <div style="width:80%;margin:0 auto;">
+            @using (Html.BeginForm("CreateItem", "Home", FormMethod.Post))
+            {
+                <div id="username-div" style="margin-bottom:10px;">
+                    <label style="width:33%;">User Name</label>
+                    <input type="text" id="username" name="username" style="width:50%;" />
+                </div>
+                <div id="password-div" style="margin-bottom:10px;">
+                    <label style="width:33%;">Password</label>
+                    <input type="password" id="password" name="password" style="width:50%;" />
+                </div>
+                <div id="login-div">
+                    <label style="width:33%;"></label>
+                    <input type="submit" value="Log In" style="background-color: cornflowerblue; color: white;" />
+                </div>
+            
+            }
+        </div>
+    </div>
+</div>
